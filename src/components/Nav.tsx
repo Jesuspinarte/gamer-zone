@@ -20,9 +20,10 @@ const Menu = styled.ul`
 
 const Item = styled.li`
   padding: 20px;
-  ${({ selected }) => selected ? `background-color: ${palette.colors.darkerBackground};` : ''}
   & * {
     color: ${palette.colors.text};
+    ${({ selected }) =>
+      selected ? `background-color: ${palette.colors.darkerBackground};` : ''}
   }
 `;
 

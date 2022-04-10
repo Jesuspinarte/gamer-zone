@@ -1,5 +1,13 @@
 import { useState } from 'react';
-import Link from 'next/link';
+import styled from 'styled-components';
+
+import palette from '../../src/utils/palette';
+
+const NewsCardWrapper = styled.article`
+  display: inline-block;
+  width: calc(50% - 20px);
+  margin-right: 20px;
+`;
 
 interface NewsCardProps {
   body: string;
@@ -17,7 +25,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
   const [showContent, setShowContent] = useState(false);
 
   return (
-    <article>
+    <NewsCardWrapper>
       <h3>{title}</h3>
       <img src={thumbnail} alt={title} />
       <p>{summary}</p>
@@ -25,7 +33,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
         {!showContent ? 'Read' : 'Close'}
       </button>
       {showContent && <div dangerouslySetInnerHTML={{ __html: body }} />}
-    </article>
+    </NewsCardWrapper>
   );
 };
 

@@ -1,11 +1,25 @@
 import { useState, useEffect, Fragment } from 'react';
 import Head from 'next/head';
+import styled from 'styled-components';
 
 import NewsCard from '../../src/components/NewsCard';
+import palette from '../../src/utils/palette';
 import { getNews } from '../../src/utils/api';
 
 import type { NextPage } from 'next';
 import type { NewsPreview } from '../../src/types/api';
+
+const NewsWrapper = styled.article`
+  display: flex;
+  justify-content: center;
+`;
+
+const NewsContainer = styled.section`
+  width: 100%;
+  max-width: ${palette.container.maxWidth};
+`;
+
+// styled.``
 
 interface NewsProps {
   results: NewsPreview[];
@@ -30,12 +44,11 @@ const News: NextPage<NewsProps> = ({ results, totalPages }) => {
   };
 
   return (
-    <article>
+    <NewsWrapper>
       <Head>
         <title>GZ - News</title>
       </Head>
-
-      <section>
+      <NewsContainer>
         {news.map(n => (
           <NewsCard
             body={n.fields.body}
@@ -45,11 +58,13 @@ const News: NextPage<NewsProps> = ({ results, totalPages }) => {
             title={n.webTitle}
           />
         ))}
-      </section>
+      </NewsContainer>
       {nextPage < totalPages && (
-        <button onClick={loadMoreNews}>Load more news</button>
+        <div>
+          <button onClick={loadMoreNews}>Load more news</button>
+        </div>
       )}
-    </article>
+    </NewsWrapper>
   );
 };
 
