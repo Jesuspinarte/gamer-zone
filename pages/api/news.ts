@@ -12,7 +12,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<NewsData>
 ) {
-  const response = await fetch(getNews(parseInt(req.query.page)));
+  const page = parseInt(req.query.page);
+  const response = await fetch(getNews(page));
 
   const {
     response: { results },

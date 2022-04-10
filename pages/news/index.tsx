@@ -5,7 +5,7 @@ import NewsCard from '../../src/components/NewsCard';
 import { getNews } from '../../src/utils/api';
 
 import type { NextPage } from 'next';
-import { NewsPreview } from '../../src/types/api';
+import type { NewsPreview } from '../../src/types/api';
 
 interface NewsProps {
   results: NewsPreview[];

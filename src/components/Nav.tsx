@@ -1,34 +1,59 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import styled from 'styled-components';
+import palette from '../utils/palette';
+
+const NavWrapper = styled.nav`
+  display: flex;
+  background-color: ${palette.colors.background};
+  justify-content: center;
+`;
+
+const Menu = styled.ul`
+  width: 100%;
+  max-width: ${palette.container.maxWidth};
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+`;
+
+const Item = styled.li`
+  padding: 20px;
+  ${({ selected }) => selected ? `background-color: ${palette.colors.darkerBackground};` : ''}
+  & * {
+    color: ${palette.colors.text};
+  }
+`;
+
 const Nav: React.FC = () => {
   const { pathname } = useRouter();
 
   return (
-    <nav>
-      <ul>
-        <li>
+    <NavWrapper>
+      <Menu>
+        <Item selected={pathname === '/'}>
           <Link href="/">
-            <a>Home{pathname === '/' && ' <--'}</a>
+            <a>Home</a>
           </Link>
-        </li>
-        <li>
+        </Item>
+        <Item selected={pathname === '/news'}>
           <Link href="/news">
-            <a>News{pathname === '/news' && ' <--'}</a>
+            <a>News</a>
           </Link>
-        </li>
-        <li>
+        </Item>
+        <Item selected={pathname === '/videos'}>
           <Link href="/videos">
-            <a>Videos{pathname === '/videos' && ' <--'}</a>
+            <a>Videos</a>
           </Link>
-        </li>
-        <li>
+        </Item>
+        <Item selected={pathname === '/about'}>
           <Link href="/about">
-            <a>About us{pathname === '/about' && ' <--'}</a>
+            <a>About us</a>
           </Link>
-        </li>
-      </ul>
-    </nav>
+        </Item>
+      </Menu>
+    </NavWrapper>
   );
 };
 
