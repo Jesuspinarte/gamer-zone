@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #4e4e4e;
 }
 
 a {
@@ -15,4 +16,16 @@ a {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.25) !important;
+}
+
+body.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+#__next {
+  height: 100vh;
 }

@@ -12,7 +12,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<NewsData>
 ) {
-  const page = parseInt(req.query.page);
+  const page = req.query.page as string;
   const response = await fetch(getNews(page));
 
   const {
@@ -22,6 +22,6 @@ export default async function handler(
   if (results) {
     res.status(200).json({ results });
   } else {
-    res.status(400).json({ message: 'Error' });
+    res.status(400).json({ results: [] });
   }
 }
